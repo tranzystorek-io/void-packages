@@ -1,0 +1,25 @@
+# Template file for 'rosenpass'
+pkgname=rosenpass
+version=0.2.0
+revision=1
+build_style=cargo
+hostmakedepends="clang pkg-config"
+makedepends="liboqs-devel libsodium-devel"
+short_desc="Formally verified, post-quantum secure VPN"
+maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
+license="Apache-2.0, MIT"
+homepage="https://rosenpass.eu"
+changelog="https://github.com/rosenpass/rosenpass/releases"
+distfiles="https://github.com/rosenpass/rosenpass/archive/refs/tags/v${version}.tar.gz"
+checksum=11ed1f8d91ce7dbfc905293306c93aebf54d55a342f325b62f0d6bd0634c69d0
+
+export LIBOQS_NO_VENDOR=1
+
+post_patch() {
+	cargo update --package oqs-sys@0.8.0 --precise 0.9.1
+}
+
+post_install() {
+	vlicense LICENSE-APACHE
+	vlicense LICENSE-MIT
+}
