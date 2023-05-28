@@ -1,0 +1,12 @@
+diff --git a/meson.build b/meson.build
+index 3571a83..bc2a332 100644
+--- a/meson.build
++++ b/meson.build
+@@ -221,6 +221,7 @@ cava_lib = shared_library('cava',
+                           dependencies: deps,
+                           include_directories: inc_dirs,
+                           c_args: c_args,
++                          soversion: '0',
+                           install: true)
+ 
+ cava_dep = declare_dependency(link_with: cava_lib,

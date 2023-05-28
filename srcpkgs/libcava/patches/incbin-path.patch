@@ -1,0 +1,21 @@
+diff --git a/src/config.c b/src/config.c
+index b49b16b..fb574d3 100644
+--- a/src/config.c
++++ b/src/config.c
+@@ -31,12 +31,12 @@
+ #define INCBIN_SILENCE_BITCODE_WARNING
+ #include "third_party/incbin.h"
+ 
+-INCTXT(ConfigFile, "example_files/config");
++INCTXT(ConfigFile, "../example_files/config");
+ 
+ // add your custom shaders to be installed here
+-INCTXT(bar_spectrum, "src/output/shaders/bar_spectrum.frag");
+-INCTXT(northern_lightsfrag, "src/output/shaders/northern_lights.frag");
+-INCTXT(pass_throughvert, "src/output/shaders/pass_through.vert");
++INCTXT(bar_spectrum, "../src/output/shaders/bar_spectrum.frag");
++INCTXT(northern_lightsfrag, "../src/output/shaders/northern_lights.frag");
++INCTXT(pass_throughvert, "../src/output/shaders/pass_through.vert");
+ 
+ // INCTXT will create a char g<name>Data
+ const char *default_shader_data[NUMBER_OF_SHADERS] = {gnorthern_lightsfragData,
