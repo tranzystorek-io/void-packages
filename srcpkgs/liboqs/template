@@ -1,0 +1,29 @@
+# Template file for 'liboqs'
+pkgname=liboqs
+version=0.9.0
+revision=1
+build_style=cmake
+configure_args="-DBUILD_SHARED_LIBS=ON"
+makedepends="openssl-devel"
+short_desc="Library for prototyping and experimenting with quantum-resistant cryptography"
+maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
+license="MIT"
+homepage="https://openquantumsafe.org/liboqs/"
+changelog="https://raw.githubusercontent.com/open-quantum-safe/liboqs/main/RELEASE.md"
+distfiles="https://github.com/open-quantum-safe/liboqs/archive/refs/tags/${version}.tar.gz"
+checksum=e6940b4d6dd631e88a2e42f137d12dc59babbd5073751846cabfb4221ece7ad0
+
+post_install() {
+	vlicense LICENSE.txt
+}
+
+liboqs-devel_package() {
+	depends="${sourcepkg}>=${version}_${revision} openssl-devel"
+	short_desc+=" - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/lib/cmake
+		vmove usr/lib/pkgconfig
+		vmove "usr/lib/*.so"
+	}
+}
