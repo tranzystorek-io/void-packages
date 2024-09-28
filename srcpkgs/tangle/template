@@ -1,0 +1,35 @@
+# Template file for 'tangle'
+pkgname=tangle
+version=0.1.1
+revision=1
+build_style=meson
+hostmakedepends="pkg-config gperf python3-Jinja2 docbook-xsl libxslt"
+makedepends="libcap-devel"
+checkdepends="dbus"
+short_desc="Standalone version of sd-event from systemd"
+maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
+license="LGPL-2.1-or-later"
+homepage="https://github.com/chimera-linux/tangle"
+distfiles="https://github.com/chimera-linux/tangle/archive/refs/tags/v${version}.tar.gz"
+checksum=709b21b489af546e6376d09b4fe64a9f7131a9ac9651336727d557d58470360c
+
+tangle-devel_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	conflicts="elogind-devel>=0"
+	pkg_install() {
+		vmove usr/share/man/man3
+		vmove usr/include
+		vmove usr/lib/pkgconfig
+		vmove "usr/lib/*.so"
+	}
+}
+
+tangle-progs_package() {
+	short_desc+=" - programs"
+	conflicts="elogind>=0"
+	pkg_install() {
+		vmove usr/bin
+		vmove usr/share/man/man1
+	}
+}
