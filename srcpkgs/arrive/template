@@ -1,0 +1,21 @@
+# Template file for 'arrive'
+pkgname=arrive
+version=0.4.0
+revision=1
+build_style=cargo
+short_desc="Simple CLI tool for interacting with Advent of Code"
+maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
+license="MIT"
+homepage="https://github.com/tranzystorekk/arrive"
+changelog="https://github.com/tranzystorekk/arrive/blob/master/CHANGELOG.md"
+distfiles="https://github.com/tranzystorekk/arrive/archive/refs/tags/v${version}.tar.gz"
+checksum=85ef5586c402c60803c4b38da044e9a25044d0ce1d1ff4e4d5979b4ce609ca6b
+
+export ARRIVE_ASSETS_GEN_DIR="${XBPS_BUILDDIR}/${pkgname}-${version}"
+
+post_install() {
+	vlicense LICENSE
+	vcompletion assets/completions/arv.bash bash arv
+	vcompletion assets/completions/arv.fish fish arv
+	vcompletion assets/completions/_arv zsh arv
+}
